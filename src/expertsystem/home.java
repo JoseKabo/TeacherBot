@@ -10,6 +10,10 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import javax.swing.ImageIcon;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import org.jpl7.Query;
+import org.jpl7.Term;
 
 /**
  *
@@ -29,6 +33,9 @@ public class home extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
+        String t1 = "consult('C:/Users/joaqu/Documents/Prolog/verbos.pl')";
+        Query q1 = new Query(t1);
+        System.out.println(t1 + " " + (q1.hasSolution() ? "conectado" : "no conectado"));
         
     }
 
@@ -93,7 +100,7 @@ public class home extends javax.swing.JFrame {
 
         btn_about.setBackground(new java.awt.Color(104, 109, 224));
         btn_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/HD_about_24px.png"))); // NOI18N
-        btn_about.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_about.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_about.setOpaque(true);
         btn_about.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,9 +117,8 @@ public class home extends javax.swing.JFrame {
 
         btn_close.setBackground(new java.awt.Color(104, 109, 224));
         btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/HD_close_32px.png"))); // NOI18N
-        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_close.setOpaque(true);
-        btn_close.setPreferredSize(new java.awt.Dimension(32, 32));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -137,8 +143,6 @@ public class home extends javax.swing.JFrame {
         header.add(lbl_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 116, -1, -1));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/header-bg.png"))); // NOI18N
-        bg.setMaximumSize(new java.awt.Dimension(778, 524));
-        bg.setMinimumSize(new java.awt.Dimension(778, 524));
         header.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 800, 213));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
@@ -147,9 +151,14 @@ public class home extends javax.swing.JFrame {
 
         txt_word.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txt_word.setForeground(new java.awt.Color(0, 51, 51));
-        txt_word.setText("Escribe aqui");
+        txt_word.setText("verbo");
         txt_word.setBorder(null);
         txt_word.setOpaque(false);
+        txt_word.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_wordActionPerformed(evt);
+            }
+        });
         content.add(txt_word, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 600, 40));
 
         hint_pasado1.setBackground(new java.awt.Color(255, 255, 255));
@@ -184,7 +193,6 @@ public class home extends javax.swing.JFrame {
 
         btn_translate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/CT_translator_leave_42px.png"))); // NOI18N
         btn_translate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_translate.setPreferredSize(new java.awt.Dimension(42, 42));
         btn_translate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_translateMouseClicked(evt);
@@ -204,7 +212,7 @@ public class home extends javax.swing.JFrame {
         lbl_pp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/pp_leave.png"))); // NOI18N
         lbl_pp.setText("Esperando");
         lbl_pp.setToolTipText("Pasado participio");
-        lbl_pp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_pp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbl_pp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lbl_pp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -223,7 +231,7 @@ public class home extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 255));
         jLabel3.setText("Palabra a traducir");
-        content.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        content.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         lbl_infinitivo.setBackground(new java.awt.Color(102, 51, 255));
         lbl_infinitivo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -232,7 +240,7 @@ public class home extends javax.swing.JFrame {
         lbl_infinitivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/infinitivo_leave.png"))); // NOI18N
         lbl_infinitivo.setText("Esperando");
         lbl_infinitivo.setToolTipText("Infinitivo");
-        lbl_infinitivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_infinitivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbl_infinitivo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lbl_infinitivo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -253,7 +261,7 @@ public class home extends javax.swing.JFrame {
         lbl_pasado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imgs/pasado_leave.png"))); // NOI18N
         lbl_pasado.setText("Esperando");
         lbl_pasado.setToolTipText("Pasado");
-        lbl_pasado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_pasado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbl_pasado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lbl_pasado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -270,7 +278,7 @@ public class home extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Haz Clic para copiar");
-        content.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, 120, 20));
+        content.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 120, 20));
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -330,40 +338,57 @@ public class home extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_aboutMouseExited
 
     private void btn_translateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_translateMouseEntered
-        this.btn_translate.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\CT_translator_hover_42px.png"));
+        this.btn_translate.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/CT_translator_hover_42px.png")));
     }//GEN-LAST:event_btn_translateMouseEntered
 
     private void btn_translateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_translateMouseExited
-        this.btn_translate.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\CT_translator_leave_42px.png"));
+        this.btn_translate.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/CT_translator_leave_42px.png")));
     }//GEN-LAST:event_btn_translateMouseExited
 
     private void lbl_infinitivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_infinitivoMouseEntered
-        this.lbl_infinitivo.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\infinitivo_hover.png"));
+        this.lbl_infinitivo.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/infinitivo_hover.png")));
     }//GEN-LAST:event_lbl_infinitivoMouseEntered
 
     private void lbl_infinitivoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_infinitivoMouseExited
-        this.lbl_infinitivo.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\infinitivo_leave.png"));
+        this.lbl_infinitivo.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/infinitivo_leave.png")));
     }//GEN-LAST:event_lbl_infinitivoMouseExited
 
     private void lbl_pasadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_pasadoMouseEntered
-        this.lbl_pasado.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\pasado_hover.png"));
+        this.lbl_pasado.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/pasado_hover.png")));
     }//GEN-LAST:event_lbl_pasadoMouseEntered
 
     private void lbl_pasadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_pasadoMouseExited
-        this.lbl_pasado.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\pasado_leave.png"));
+        this.lbl_pasado.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/pasado_leave.png")));
     }//GEN-LAST:event_lbl_pasadoMouseExited
 
     private void lbl_ppMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ppMouseEntered
-        this.lbl_pp.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\pp_hover.png"));
+        this.lbl_pp.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/pp_hover.png")));
     }//GEN-LAST:event_lbl_ppMouseEntered
 
     private void lbl_ppMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ppMouseExited
-        this.lbl_pp.setIcon(new ImageIcon("C:\\Users\\JKBO\\Documents\\NetBeansProjects\\ExpertSystem\\src\\assets\\imgs\\pp_leave.png"));
+        this.lbl_pp.setIcon(new ImageIcon(this.getClass().getResource("/assets/imgs/pp_leave.png")));
     }//GEN-LAST:event_lbl_ppMouseExited
 
     private void btn_translateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_translateMouseClicked
         if(this.txt_word.getText().length() >= 2){
-            System.out.println("start processing");
+            String verbo = this.txt_word.getText();
+            try {
+                String t2 = "traducir(" + verbo.trim() + ",I,P,F)";
+                Query q2 = new Query(t2);
+                Map<String, Term>[] map = q2.allSolutions();
+                if (map.length <= 0) {
+                    JOptionPane.showMessageDialog(null, "No se encontro el verbo");
+                } else {
+                    for (Map<String, Term> map1 : map) {
+                        System.out.println(map1);
+                        lbl_infinitivo.setText(map1.get("I").toString());
+                        lbl_pasado.setText(map1.get("P").toString());
+                        lbl_pp.setText(map1.get("F").toString());
+                    }
+                }
+               } catch (Exception e) {
+                   System.out.println(e.getMessage());
+            }
         }
     }//GEN-LAST:event_btn_translateMouseClicked
 
@@ -385,6 +410,10 @@ public class home extends javax.swing.JFrame {
         Clipboard clpbrd = Toolkit.getDefaultToolkit ().getSystemClipboard (); 
         clpbrd.setContents (stringSelection, null);
     }//GEN-LAST:event_lbl_ppMouseClicked
+
+    private void txt_wordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_wordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_wordActionPerformed
 
     /**
      * @param args the command line arguments
