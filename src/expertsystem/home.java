@@ -33,9 +33,13 @@ public class home extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        String t1 = "consult('C:/Users/joaqu/Documents/Prolog/verbos.pl')";
-        Query q1 = new Query(t1);
-        System.out.println(t1 + " " + (q1.hasSolution() ? "conectado" : "no conectado"));
+        try {
+            String t1 = "consult('"+ this.getClass().getResource("/assets/verbs.pl").getFile() +"')";
+            Query q1 = new Query(t1);
+            System.out.println(t1 + " " + (q1.hasSolution() ? "conectado" : "no conectado"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         
     }
 
